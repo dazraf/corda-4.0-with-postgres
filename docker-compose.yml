@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  notary_db:
+    container_name: notary_db
+    image: postgres:9.6
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+  partya_db:
+    container_name: partya_db
+    image: postgres:9.6
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+  partyb_db:
+    container_name: partyb_db
+    image: postgres:9.6
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
