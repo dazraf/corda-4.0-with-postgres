@@ -77,3 +77,4 @@ docs/virtualenv/
 # if you use the installQuasar task
 lib
 tmp-env
+.idea/dataSources
