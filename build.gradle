@@ -2,8 +2,6 @@ buildscript {
     ext {
         corda_release_group = "net.corda"
         corda_release_version = "4.0"
-        corda_release_group = 'net.corda'
-        corda_release_version = '4.0'
         corda_gradle_plugins_version = '4.0.42'
         kotlin_version = '1.2.71'
         junit_version = '4.12'
@@ -99,7 +97,6 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         }
         cordapp project(':contracts')
         cordapp project(':workflows')
-        drivers = ['libs/postgresql-42.1.4.jar']
     }
     node {
         name "O=Notary,L=London,C=GB"
@@ -109,14 +106,6 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
             address("localhost:10003")
             adminAddress("localhost:10043")
         }
-        extraConfig = [
-                'dataSourceProperties': [
-                        'dataSourceClassName'  : 'org.postgresql.ds.PGSimpleDataSource',
-                        'dataSource.url'     : 'jdbc:postgresql://localhost:5432/postgres',
-                        'dataSource.user'    : 'postgres',
-                        'dataSource.password': 'postgres'
-                ]
-        ]
     }
     node {
         name "O=PartyA,L=London,C=GB"
@@ -126,14 +115,6 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
             adminAddress("localhost:10046")
         }
         rpcUsers = [[ user: "user1", "password": "test", "permissions": ["ALL"]]]
-        extraConfig = [
-                'dataSourceProperties': [
-                        'dataSourceClassName'  : 'org.postgresql.ds.PGSimpleDataSource',
-                        'dataSource.url'     : 'jdbc:postgresql://localhost:5433/postgres',
-                        'dataSource.user'    : 'postgres',
-                        'dataSource.password': 'postgres'
-                ]
-        ]
     }
     node {
         name "O=PartyB,L=New York,C=US"
@@ -143,14 +124,6 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
             adminAddress("localhost:10049")
         }
         rpcUsers = [[ user: "user1", "password": "test", "permissions": ["ALL"]]]
-        extraConfig = [
-                'dataSourceProperties': [
-                        'dataSourceClassName'  : 'org.postgresql.ds.PGSimpleDataSource',
-                        'dataSource.url'     : 'jdbc:postgresql://localhost:5434/postgres',
-                        'dataSource.user'    : 'postgres',
-                        'dataSource.password': 'postgres'
-                ]
-        ]
     }
 }
 

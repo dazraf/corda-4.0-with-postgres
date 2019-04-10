@@ -1,0 +1,3 @@
+notary-node: cd notary && ./start.sh
+partya-node: cd partya && ./start.sh
+partyb-node: cd partyb && ./start.sh
