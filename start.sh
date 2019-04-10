@@ -6,7 +6,7 @@ set -e
 killall -9 java
 docker-compose down || true
 
-# build
+## build
 ./gradlew clean deployNodes
 
 # start dbs and network services
@@ -17,7 +17,6 @@ until $(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080 | grep -q 2
   printf '.'
   sleep 1
 done
-
 
 # prepare the environment
 mkdir -p tmp-env

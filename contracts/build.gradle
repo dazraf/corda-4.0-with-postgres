@@ -9,6 +9,16 @@ cordapp {
         licence "Apache License, Version 2.0"
         versionId 1
     }
+    signing {
+        enabled true
+        options {
+            keystore "../secret/jar-signing.jks"
+            alias "cordapp-signer"
+            storepass "secret1!"
+            keypass "secret1!"
+            storetype "PKCS12"
+        }
+    }
 }
 
 dependencies {
