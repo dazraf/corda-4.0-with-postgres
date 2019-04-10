@@ -23,7 +23,7 @@ mkdir -p tmp-env
 rm -rf tmp-env/*
 
 pushd tmp-env
-  cp -R ../env-template/* .
+  cp -R ../env-templates/prod/* .
   cp ./scripts/* ./notary
   cp ./scripts/* ./partya
   cp ./scripts/* ./partyb
