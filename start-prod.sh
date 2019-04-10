@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+CORDA_VERSION="4.0"
 
 # ensure everything is dead
 killall -9 java
@@ -29,11 +30,15 @@ pushd tmp-env
   cp ./scripts/* ./partyb
 
   # get the truststore
+  echo "retrieving network truststore"
   wget http://localhost:8080/network-map/truststore -O truststore.jks
-  cp  ../build/nodes/Notary/corda.jar .
+
+  echo "retrieving corda.jar for version ${CORDA_VERSION}"
+  curl -L https://dl.bintray.com/r3/corda/net/corda/corda/${CORDA_VERSION}/corda-${CORDA_VERSION}.jar --output ./corda.jar
 
   # register notary and set it up as a whitelisted notary in the network-parameters
   pushd notary
+    echo "registering notary"
     ./register.sh
     NODE_INFO=$(ls nodeInfo*)
     echo "authenticating with NMS"
@@ -43,12 +48,16 @@ pushd tmp-env
   popd # notary
 
   pushd partya
+    echo "registering partya"
     ./register.sh
   popd # partya
 
   pushd partyb
+    echo "registering partyb"
     ./register.sh
   popd # partyb
+
+echo "starting up all nodes"
 
 overmind start
 popd # tmp-env
