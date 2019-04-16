@@ -19,7 +19,7 @@ This creates a full environment locally. Includes [Cordite network-map service](
 
 ```bash
 cd <project root>
-./start.sh
+./start-prod.sh
 ```
 
 ## 'Dev' mode
